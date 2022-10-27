@@ -1,4 +1,4 @@
 etc/
-.haccess/
-/autoload.php/
-/boostrap.php/
+/.htaccess 
+/bootstrap.php
+/autoload.php 
