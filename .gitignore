@@ -1,4 +1,4 @@
-etc/
+/etc
 /.htaccess 
 /bootstrap.php
 /autoload.php 
