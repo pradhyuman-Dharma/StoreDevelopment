@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        header.page-header {
+            box-shadow: 0px 0px 7px 0px rgb(0 0 0 / 20%);
+            border-top: none;
+            margin-bottom: 25px;
+            /* position: sticky;
+            top: 0; */
+            z-index: 150;
+            color: #f4f4f4;
+            background-color: #000;
+        }
+
+        .header.content {
+            height: 97px;
+            padding: 6px 0px 4px;
+        }
+
+        .sections.nav-sections {
+            height: 16.8px;
+            padding-bottom: 25px;
+            margin-bottom: 0px;
+            display: flex;
+            justify-content: center;
+            background-color: #000;
+        }
+
+        .logo {
+            width: 30%;
+            padding: 10px 0px 0px 10px;
+            margin: 0px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            display: initial;
+        }
+
+        .block-search .nested {
+            display: none;
+        }
+
+        a:visited,
+        .alink:visited {
+            color: #f4f4f4;
+        }
+
+        a:hover,
+        .alink:hover {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .minicart-wrapper .action.showcart:hover:before {
+            color: #ccc;
+        }
+
+        .block-search input {
+            border-radius: 10px;
+            height: 35px;
+        }
+
+        .userAcc {
+            color: #f4f4f4;
+            font-size: 35px;
+            float: right;
+            margin: 0px 10px 5px 5px;
+        }
+
+        #usr_popup {
+            display: none;
+            height: 250px;
+            padding-top: 30px;
+            text-align: center;
+            position: fixed;
+            top: 10%;
+            width: 350px;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 20;
+            background-color: #f4f4f4;
+        }
+
+        button.btn.cancel {
+            background-color: red;
+            margin: 20px;
+            padding: 15px 40px;
+        }
+
+        div#usr_popup span a {
+            color: #000;
+            display: block;
+            padding-top: 10px;
+            font-weight: bold;
+        }
+
+        .navigation {
+            font-weight: 550;
+            font-size: 16px;
+            background-color: #000;
+        }
+
+        .navigation .level0>.level-top {
+            line-height: 0px;
+            color: #f4f4f4;
+        }
+
+        .navigation .level0>.level-top:hover {
+            color: #ccc;
+        }
+
+        .block-search {
+            margin: 10px 5px 0px 5px;
+        }
+
+        .minicart-wrapper .action.showcart:before {
+            font-size: 50px;
+            color: #f4f4f4;
+        }
+
+        .minicart-wrapper {
+            display: inline-block;
+            position: relative;
+            float: right;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+    $url = $storeManager->getStore()->getBaseUrl();
+    // echo $url; exit;
+    ?>
+    <div class="userAcc">
+        <a href="#" id="clickme" onclick="openForm()"><i class="fa-solid fa-circle-user"></i></a>
+    </div>
+
+    <div id="usr_popup">
+        <span>
+            <a href="<?= $url ?>customer/account/">My Account</a>
+        </span>
+        <span>
+            <a href="<?= $url ?>wishlist/">My Wish List</a>
+        </span>
+        <span>
+            <a href="<?= $url ?>customer/account/login/referer/"> Sign In </a>
+        </span>
+        <span>
+            <a href="<?= $url ?>customer/account/create/">Create an Account</a>
+        </span>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("usr_popup").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("usr_popup").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

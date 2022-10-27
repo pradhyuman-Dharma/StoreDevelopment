@@ -1,0 +1,39 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" src_type="url"/>
+    </head>
+    <body>
+        <!-- <referenceBlock name="header.panel.wrapper" remove="true" /> -->
+        <!-- <move element="my-account-link" destination="header-wrapper" after="block-search"/> -->
+        <!-- <referenceBlock name="compare-products-link" remove="true" /> -->
+        <referenceBlock name="header.panel" remove="true" />
+
+        <!-- <move element="top.links" destination="header-wrapper" after="logo"/> -->
+        <move element="navigation.sections" destination="header.container" after="header-wrapper" />
+
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/Vector-5.svg</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="footer-container">
+            <block class="Magento\Theme\Block\Html\Footer" name="footer_top" template="Magento_Theme::html/footer.phtml" before="-"/>
+        </referenceContainer>
+
+         <referenceContainer name="footer">
+            <block class="Magento\Theme\Block\Html\Footer" name="newsletter_img" template="Magento_Theme::fonticon.phtml" before="form.subscribe"/>
+       </referenceContainer>
+
+
+        <!-- custom title add in footer -->
+        <!-- <referenceBlock name="footer_links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="text-footer" template="Magento_Theme::link.phtml" before="-"/>
+        </referenceBlock> -->
+
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="header-cust" template="Magento_Theme::customcss.phtml" after="logo"/>
+        </referenceContainer>
+        <move element="block-search" destination="header-wrapper" after="logo" />
+    </body>
+</page>
