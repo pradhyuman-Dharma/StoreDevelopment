@@ -34,6 +34,7 @@
     }
 
     img.gallery-placeholder__image {
+      /* background-image: url(https://cdn-cegme.nitrocdn.com/KWpsFNCOfhRwnWIXxeiTrzLRchTYmqhM/assets/static/optimized/rev-7202cc2/pub/static/version1665472150/frontend/Setubridge/m2way-child/en_US/images/product-background-image.png); */
       background-repeat: no-repeat;
       border: none;
       border-radius: 5px;
@@ -45,86 +46,54 @@
     .product.attribute.overview p {
       padding-bottom: 25px;
     }
-
-    .product-image-slider .screenshot-title {
-    display: inline-block;
-    position: relative;
-    right: 15%;
-    padding: 10px 0;
-    margin: 15px 0;
-}
-
-    /* css for features */
-
-    .product.media {
-      display: flex;
-      justify-content: space-evenly;
-    }
-
-    .product-feature {
-      margin: 6px 0;
-    }
-
-    .description-features div div::before {
-      content: "✔";
-      color: rgb(117, 117, 117);
-      font-size: 17px;
-      position: relative;
-      margin: 5px;
-      top: 2px;
-    }
-
-    .description-features div div {
-      margin: 7px 0;
-    }
   </style>
 </head>
 
 <body>
 
   <?php
-  $product = $block->getCurrentProduct();
+  $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+  $_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product'); //get current product
   $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+  $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
   $images = $product->getMediaGallery();
 
   ?>
-  <div class="product-image-slider">
-    <div class="screenshot-title">
-      <h2 class="title">ScreenShots</h2>
-    </div>
-    <div class="owl-carousel owl-theme">
+  <div class="screenshot-title">
+    <h2 class="title">ScreenShots</h2>
+  </div>
+  <div class="owl-carousel owl-theme">
 
+    <?php
+
+    if (count($images) > 0) { ?>
+      <?php
+      $i = 0;
+      foreach ($images as $image) {
+        foreach ($image as $child) {
+          $i++;
+          $productImage = $_imagehelper->init($product, 'product_page_image_large')
+            ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
+            ->getUrl();
+
+          $productImagedata = $_imagehelper->init($product, 'product_page_image_large')
+            ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
+            ->getUrl();
+          if ($i == 1) continue;
+
+      ?>
+          <div class="slide">
+            <img data-id="smallthumbs-<?php echo $_product->getId(); ?>" data-img="<?php echo $productImagedata; ?>" src="<?php echo $productImage; ?>" />
+          </div>
       <?php
 
-      if (count($images) > 0) { ?>
-        <?php
-        $i = 0;
-        foreach ($images as $image) {
-          foreach ($image as $child) {
-            $i++;
-            $productImage = $_imagehelper->init($product, 'product_page_image_large')
-              ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
-              ->getUrl();
-
-            $productImagedata = $_imagehelper->init($product, 'product_page_image_large')
-              ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
-              ->getUrl();
-            if ($i == 1) continue;
-
-        ?>
-            <div class="slide">
-              <img data-id="smallthumbs-<?php echo $product->getId(); ?>" data-img="<?php echo $productImagedata; ?>" src="<?php echo $productImage; ?>" />
-            </div>
-        <?php
-
-          }
         }
-        ?>
-
-      <?php
       }
       ?>
-    </div>
+
+    <?php
+    }
+    ?>
   </div>
   <script>
     $(document).ready(function() {
@@ -140,7 +109,7 @@
             items: 3
           },
           1000: {
-            items: 4
+            items: 3
           }
         }
       });

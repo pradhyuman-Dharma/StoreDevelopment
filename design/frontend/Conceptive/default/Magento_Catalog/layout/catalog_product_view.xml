@@ -4,13 +4,21 @@
         <move element="page.main.title" destination="content" before="-" />
         <move element="product.info.overview" destination="content" after="page.main.title" />
 
-        <referenceContainer name="product.info.main">
-            <!-- <container name="ImageSlider.product" htmlTag="div" htmlClass="ImageSlider">
-                    <block class="Magento\Framework\View\Element\Template" name="product.page" template="Conceptive_HelloWorld::slider.phtml" after="-" />
-            </container> -->
+        <!-- <referenceContainer name="product.info.main">
+            <container name="product.ImageSlider" htmlTag="div" htmlClass="ImageSlider">
+                <block class="Conceptive\Commerce\Block\Index" name="product.page" template="Conceptive_Commerce::slider.phtml" after="-" />
+            </container>
+        </referenceContainer> -->
 
-            <container name="ImageSlider.product.slider" htmlTag="div" htmlClass="ImageSlider">
-                    <block class="Magento\Framework\View\Element\Template" name="product.page" template="Conceptive_Commerce::slider.phtml" after="-" />
+        <referenceContainer name="content">
+            <container name="product.ImageSlider" htmlTag="div" htmlClass="ImageSlider">
+                <block class="Conceptive\Commerce\Block\Index" name="product.page.slider" template="Conceptive_Commerce::slider.phtml" after="product.info.main" />
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.media">
+            <container name="product.feature" htmlTag="div" htmlClass="product-feature">
+                <block class="Conceptive\Commerce\Block\Index" name="product.page.features" template="Conceptive_Commerce::product_features.phtml" after="product.info.media.image" />
             </container>
         </referenceContainer>
     </body>
