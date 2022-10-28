@@ -141,6 +141,22 @@
             width: 40%;
         }
 
+        footer.page-footer a,
+        .alink {
+            color: #f4f4f4;
+        }
+
+        footer.page-footer a:visited,
+        .alink:visited {
+            color: #f4f4f4;
+        }
+
+        footer.page-footer a:hover,
+        .alink:hover {
+            color: #ccc;
+            text-decoration: none;
+        }
+
         .explore {
             padding: 30px;
             float: left;
@@ -159,10 +175,106 @@
             font-size: 14px;
         }
 
-        @media only screen and (max-width: 768px){
-            
+        @media only screen and (max-width: 768px) {
+            .page-wrapper {
+                overflow-x: hidden;
+            }
+
+            .newsletter-img {
+                width: 100%;
+                margin: 0px;
+            }
+
+            .block.newsletter {
+                width: 100%;
+                padding: 20px 0px;
+                margin-bottom: 0px;
+            }
+
+            .custLink {
+                width: 100%;
+            }
+
+            .mapimg {
+                width: 100%;
+                height: auto;
+                padding: 0px;
+            }
+            .footer_title h3 {
+                padding: 20px 0px 20px 20px;
+            }
         }
 
+        @media only screen and (max-width: 500px) {
+            .newsletter-img {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .newsletter-img p {
+                font-size: 20px;
+                width: 65%;
+                padding-top: 15px;
+            }
+
+            .block.newsletter .actions {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                padding-top: 15px;
+            }
+
+            .block.newsletter input {
+                margin-right: 15px;
+                padding: 20px 40px;
+                font-size: 16px;
+                border-radius: 15px;
+            }
+
+            .block.newsletter .field .control:before {
+                font-size: 45px;
+                line-height: 45px;
+            }
+
+            .action.primary,
+            .action-primary {
+                padding: 15px 25px;
+                font-size: 16px;
+            }
+
+            .explore {
+                padding: 0px 0px 30px 30px;
+                width: 100%;
+            }
+
+            .custadd {
+                padding-left: 30px;
+                width: 100%;
+            }
+
+            li.nav.item a {
+                font-size: 16px;
+            }
+
+            .footer_title h3 {
+                text-align: center;
+            }
+            .footer .copyright{
+                font-size: 10px;
+            }
+        }
+
+        /* @media only screen and (min-width: 600px){
+            .newsletter-img{
+                width: 55%;
+            }
+        }
+        @media only screen and (min-width:320px){
+            .newsletter-img{
+                flex-wrap: wrap;
+                width: 100%;
+            }
+        } */
     </style>
 </head>
 
