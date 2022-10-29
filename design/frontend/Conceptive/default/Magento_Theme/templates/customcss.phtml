@@ -70,11 +70,11 @@
 
         #usr_popup {
             display: none;
-            padding-top: 30px;
-            text-align: center;
+            padding-top: 20px;
+            text-align: left;
             position: fixed;
             top: 10%;
-            width: 350px;
+            width: 300px;
             right: 15px;
             border: 3px solid #f1f1f1;
             z-index: 20;
@@ -89,8 +89,11 @@
 
         div#usr_popup span a {
             color: #000;
+            margin: 5px;
+            padding: 10px 5px 5px 5px;
             display: block;
-            padding-top: 10px;
+            border: 2px solid #000;
+            border-style: none none outset inset;
             font-weight: bold;
         }
 
@@ -145,7 +148,7 @@
         }
 
         a.mobile-logo {
-            width: 30%;
+            width: 20%;
             display: none;
         }
 
@@ -172,10 +175,12 @@
             a.logo {
                 padding: 10px 0px 10px 60px;
             }
+
             a.mobile-logo {
-            width: 30%;
-            display: inline-block;
-        }
+                width: 20%;
+                display: inline-block;
+            }
+
             #usr_popup {
                 width: 250px;
             }
@@ -194,22 +199,13 @@
             .block-search {
                 margin: 20px 0px 0px 0px;
                 float: right;
-                display: inline-block;
+                width: 45%;
             }
 
             .block-search .control {
                 border: none;
             }
         }
-
-        /* @media only screen and (max-width: 500px) {
-            img.mobilelogo {
-                display: inline;
-                width: 60%;
-                height: auto;
-                margin: 0px 10px;
-            }
-        } */
 
         @media (min-width: 320px) and (max-width: 767px) {
             .sections.nav-sections {
@@ -218,6 +214,10 @@
 
             .nav-toggle:hover:before {
                 color: #f4f4f4;
+            }
+
+            .block-search {
+                width: 30%;
             }
         }
 
@@ -235,7 +235,16 @@
                 margin-bottom: 0 !important;
             }
 
-        }
+            .navigation .level0.active>.level-top,
+            .navigation .level0.has-active>.level-top {
+                color: #f4f4f4
+            }
+
+            .block-search {
+                float: left;
+                padding-left: 30px;
+                width: 35%;
+            }
     </style>
 </head>
 
