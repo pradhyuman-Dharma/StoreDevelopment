@@ -1,18 +1,12 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <move element="page.main.title" destination="content" before="-" />
-        <move element="product.info.overview" destination="content" after="page.main.title" />
-
-        <!-- <referenceContainer name="product.info.main">
-            <container name="product.ImageSlider" htmlTag="div" htmlClass="ImageSlider">
-                <block class="Conceptive\Commerce\Block\Index" name="product.page" template="Conceptive_Commerce::slider.phtml" after="-" />
-            </container>
-        </referenceContainer> -->
+        <move element="page.main.title" destination="page.top" after="breadcrumbs" />
+        <move element="product.info.overview" destination="page.top" after="page.main.title" />
 
         <referenceContainer name="content">
-            <container name="product.ImageSlider" htmlTag="div" htmlClass="ImageSlider">
-                <block class="Conceptive\Commerce\Block\Index" name="product.page.slider" template="Conceptive_Commerce::slider.phtml" after="product.info.main" />
+            <container name="product.ImageSlider" htmlTag="div" htmlClass="ImageSlider" before="product.info.details">
+                <block class="Conceptive\Commerce\Block\Index" name="product.page.slider" template="Conceptive_Commerce::slider.phtml" />
             </container>
         </referenceContainer>
 

@@ -30,7 +30,10 @@
     }
 
     .page-title-wrapper h1.page-title {
+      color: #000a53;
       text-align: center;
+      font-size: 36px;
+      font-weight: 400;
     }
 
     img.gallery-placeholder__image {
@@ -42,27 +45,20 @@
       margin: 0px;
     }
 
-    .product.attribute.overview p {
-      padding-bottom: 25px;
-    }
-
     .product-image-slider .screenshot-title {
-    display: inline-block;
-    position: relative;
-    right: 15%;
-    padding: 10px 0;
-    margin: 15px 0;
-}
+      display: inline-block;
+      position: relative;
+      /* right: 15%; */
+      padding: 10px 0;
+      margin: 15px 0;
+    }
 
     /* css for features */
 
     .product.media {
       display: flex;
       justify-content: space-evenly;
-    }
-
-    .product-feature {
-      margin: 6px 0;
+      gap: 0 10px;
     }
 
     .description-features div div::before {
@@ -70,12 +66,75 @@
       color: rgb(117, 117, 117);
       font-size: 17px;
       position: relative;
-      margin: 5px;
+      margin-right: 5px;
       top: 2px;
     }
 
-    .description-features div div {
+    /* .description-features div div {
       margin: 7px 0;
+    } */
+
+
+    /* For Mobile  */
+
+    @media screen and (min-width:768px) {
+
+      .product.attribute.overview p {
+        color: #001953;
+        padding-bottom: 25px;
+        margin: 0 80px;
+      }
+
+      .product.attribute.overview .value {
+        font-size: 22px;
+        text-align: center;
+        padding-bottom: 20px;
+      }
+
+      .product-image-slider {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width:768px) {
+
+      .product-feature {
+        align-self: flex-start;
+      }
+
+      .product-feature .specifications {
+        margin: 25px 0;
+      }
+
+      .page-title-wrapper h1.page-title {
+        font-size: 16px;
+      }
+
+      .product.attribute.overview .value {
+        font-size: 14px;
+      }
+
+      .product.attribute .value p {
+        padding: 0 20px;
+        margin: 0 10px 25px 0;
+      }
+
+      .product-image-slider {
+        margin-bottom: 25px;
+      }
+
+      .product-image-slider .screenshot-title {
+        display: flex;
+        justify-content: center;
+        position: static;
+      }
+
+      .product.media {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
