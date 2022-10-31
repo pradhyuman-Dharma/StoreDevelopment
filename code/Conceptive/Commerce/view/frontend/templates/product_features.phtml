@@ -1,4 +1,6 @@
 <?php
 
 $product = $block->getCurrentProduct();
-echo $product->getProductFeatures();
+if($product->getProductFeatures() != null){
+    echo $product->getProductFeatures();
+}
