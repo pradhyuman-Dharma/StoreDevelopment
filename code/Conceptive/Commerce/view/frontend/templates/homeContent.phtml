@@ -1,0 +1,43 @@
+<?php 
+    $productCollection = $block->getProductCollection();
+?>
+
+
+<div class="homecontent">
+    <div class="extensions">
+        <div class="relink">
+            <h2>Extensions that Helps You To Reach More</h2>
+            <p class="view-all-link"><a href="#">View All > </a></p>
+        </div>
+        <?php
+        foreach ($productCollection as $product) {   ?>
+        <div class="topproduct">
+            <?php
+            // print_r($product->getData());     
+            // echo "<br>";
+        
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getId());
+            //echo  $products->getProductUrl(); 
+
+            $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+            $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
+            //echo $image_url;
+
+            echo "<img src=' $image_url '/>";
+            echo "<br>";
+
+            echo $product->getName()."<br>";
+            echo "$".$product->getPrice()."<br>"; ?>
+        </div>
+        <?php
+     }
+?>
+    </div>
+    <div class="devlopments">
+
+    </div>
+    <div class="industrial">
+
+    </div>
+</div>

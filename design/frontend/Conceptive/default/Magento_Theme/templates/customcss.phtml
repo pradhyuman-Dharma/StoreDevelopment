@@ -10,9 +10,8 @@
             box-shadow: 0px 0px 7px 0px rgb(0 0 0 / 20%);
             border-top: none;
             margin-bottom: 25px;
-
             z-index: 150;
-            color: #f4f4f4;
+            color: #000;
             background-color: #000;
         }
 
@@ -151,6 +150,9 @@
             width: 20%;
             display: none;
         }
+        .search-autocomplete{
+            color: #000;
+        }
 
         @media only screen and (max-width: 768px) {
             .header.content {
@@ -245,6 +247,7 @@
                 padding-left: 30px;
                 width: 35%;
             }
+        }
     </style>
 </head>
 
@@ -258,10 +261,10 @@
 
 
     <div class="userAcc">
-        <a href="#" id="clickme" onclick="openForm()"><i class="fa-solid fa-circle-user"></i></a>
+        <a href="#" id="clickme" onmouseover="openForm()"><i class="fa-solid fa-circle-user"></i></a>
     </div>
 
-    <div id="usr_popup">
+    <div id="usr_popup" onmouseover="openForm()" onmouseout="closeForm()">
         <span>
             <a href="<?= $url ?>customer/account/">My Account</a>
         </span>
@@ -274,7 +277,7 @@
         <span>
             <a href="<?= $url ?>customer/account/create/">Create an Account</a>
         </span>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        <!-- <button type="button" class="btn cancel">Close</button> -->
     </div>
 
     <script>
