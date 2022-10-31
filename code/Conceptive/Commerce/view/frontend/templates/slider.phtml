@@ -16,11 +16,180 @@
     .owl-carousel .owl-nav.disabled {
       display: block;
     }
-    .fotorama-item{
+
+    .no-js .owl-carousel, .owl-carousel.owl-loaded {
+    display: block;
+}
+
+    .fotorama-item {
       display: none;
     }
-    h2.title {
+
+    .screenshot-title h2.title {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 30px;
+      font-weight: 400;
+      font-family: lato-light;
+    }
+
+    .page-title-wrapper h1.page-title {
+      color: #000a53;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 400;
+    }
+
+    img.gallery-placeholder__image {
+      background-repeat: no-repeat;
+      border: none;
+      border-radius: 5px;
+      background-size: 100%;
+      box-shadow: 0px 0px 6px 0px #4e4848;
+      margin: 0px;
+    }
+
+    .product-image-slider .screenshot-title {
+      display: inline-block;
+      position: relative;
+      padding: 10px 0;
+      margin: 15px 0;
+    }
+
+    /* css for features */
+
+    .product.media {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 0 10px;
+    }
+
+    .description-features div div::before {
+      content: "✔";
+      color: rgb(117, 117, 117);
+      font-size: 17px;
+      position: relative;
+      margin-right: 5px;
+      top: 2px;
+    }
+
+
+    /* For Add to Cart */
+
+    button#product-addtocart-button {
+      background-color: black;
+      border: 1px solid black;
+      transition: all 0.3s ease;
+    }
+
+    button#product-addtocart-button:hover {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      transition: all 0.3s ease;
+    }
+
+     /* For wishlist and compare button*/
+
+    .product-addto-links a.action.towishlist, .product-addto-links a.action.tocompare{
+        background: black;
+        border: navajowhite;
+        padding: 9px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .product-addto-links a.action.towishlist:hover, .product-addto-links a.action.tocompare:hover {
+        background: white;
+        color: black;
+        border: 1px solid black;
+        transition: all 0.3s ease;
+    }
+
+    /* For Tabs  */
+
+    div#tab-label-description a#tab-label-description-title,
+    div#tab-label-reviews a#tab-label-reviews-title {
+        background: white;
+        color: black;
+        border: none;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    div#tab-label-description.active a#tab-label-description-title,
+    div#tab-label-reviews.active a#tab-label-reviews-title {
+        background: black;
+        color: white;
+    }
+
+    div#tab-label-description a#tab-label-description-title:hover,
+    div#tab-label-reviews a#tab-label-reviews-title:hover {
+        background: black;
+        color: white;
+        /* border: 1px solid black; */
+    }
+    
+    /* For Mobile  */
+
+    @media screen and (min-width:768px) {
+
+      .product.attribute.overview p {
+        color: #001953;
+        padding-bottom: 25px;
+        margin: 0 80px;
+      }
+
+      .product.attribute.overview .value {
+        font-size: 22px;
         text-align: center;
+        padding-bottom: 20px;
+      }
+
+      .product-image-slider {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width:768px) {
+
+      .product-feature {
+        align-self: flex-start;
+      }
+
+      .product-feature .specifications {
+        margin: 25px 0;
+      }
+
+      .page-title-wrapper h1.page-title {
+        font-size: 16px;
+      }
+
+      .product.attribute.overview .value {
+        font-size: 14px;
+      }
+
+      .product.attribute .value p {
+        padding: 0 20px;
+        margin: 0 10px 25px 0;
+      }
+
+      .product-image-slider {
+        margin-bottom: 25px;
+      }
+
+      .product-image-slider .screenshot-title {
+        display: flex;
+        justify-content: center;
+        position: static;
+      }
+
+      .product.media {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -28,53 +197,49 @@
 <body>
 
   <?php
-  $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
-  $_product = $objectManager->get('Magento\Framework\Registry')->registry('current_product'); //get current product
+  $product = $block->getCurrentProduct();
   $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
-  $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
   $images = $product->getMediaGallery();
-
+  $imagesKeys = array_keys($images['images']);
+ 
   ?>
-  <div class="main-title">
-    <h2 class="title">ScreenShots</h2>
-  </div>
-  <div class="owl-carousel owl-theme">
-    
-    <?php
+  <?php
 
-    if (count($images) > 0) { ?>
-      <?php
-      $i = 0;
-      foreach ($images as $image) {
-        foreach ($image as $child) {
-          $i++;
-          $productImage = $_imagehelper->init($product, 'product_page_image_large')
-            ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
-            ->getUrl();
+  if (count($imagesKeys) > 1) { ?>
+    <div class="product-image-slider">
+      <div class="screenshot-title">
+        <h2 class="title">ScreenShots</h2>
+      </div>
+      <div class="owl-carousel owl-theme">
+        <?php
+        $i = 0;
+        foreach ($images as $image) {
+          foreach ($image as $child) {
+            $i++;
+            $productImage = $_imagehelper->init($product, 'product_page_image_large')
+              ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
+              ->getUrl();
 
-          $productImagedata = $_imagehelper->init($product, 'product_page_image_large')
-            ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
-            ->getUrl();
-          if ($i == 1) continue;
+            $productImagedata = $_imagehelper->init($product, 'product_page_image_large')
+              ->setImageFile($child['file'])->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(285, 240)
+              ->getUrl();
+            if ($i == 1) continue;
 
-      ?>
-          <div class="slide">
-              <img data-id="smallthumbs-<?php echo $_product->getId(); ?>" data-img="<?php echo $productImagedata; ?>" src="<?php echo $productImage; ?>" />
-          </div>
-          <!-- <div class="item">
-            <img src="<?php echo $productImage; ?>" alt="" />
-          </div> -->
+        ?>
+            <div class="slide">
+              <img data-id="smallthumbs-<?php echo $product->getId(); ?>" data-img="<?php echo $productImagedata; ?>" src="<?php echo $productImage; ?>" />
+            </div>
+        <?php
 
-      <?php
-
+          }
         }
-      }
-      ?>
+        ?>
 
-    <?php
-    }
-    ?>
-  </div>
+      </div>
+    </div>
+  <?php
+  }
+  ?>
   <script>
     $(document).ready(function() {
       $('.owl-carousel').owlCarousel({
@@ -89,7 +254,7 @@
             items: 3
           },
           1000: {
-            items: 3
+            items: 4
           }
         }
       });

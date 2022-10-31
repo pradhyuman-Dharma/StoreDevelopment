@@ -1,0 +1,65 @@
+<?php
+
+$product = $block->getCurrentProduct();
+
+?>
+
+<div class="product-demo">
+    <?php if ($product->getVideoUrl() != null) { ?>
+        <div class="product-video-url url-btn">
+            <a href="<?= $product->getVideoUrl() ?>" target="_blan">Video</a>
+        </div>
+    <?php
+    } ?>
+
+    <?php if ($product->getUserGuideUrl() != null) { ?>
+        <div class="product-live-demo-url url-btn">
+            <a href="<?= $product->getUserGuideUrl() ?>" target="_blank">Live Demo</a>
+        </div>
+
+    <?php
+    } ?>
+
+    <?php if ($product->getLiveDemoUrl() != null) { ?>
+
+        <div class="product-user-guide-url url-btn">
+            <a href="<?= $product->getLiveDemoUrl() ?>" target="_blank">User Guide</a>
+        </div>
+
+    <?php
+    } ?>
+
+</div>
+
+
+<style>
+    .product-demo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px 10px;
+        margin: 25px 0;
+    }
+
+    .product-demo .url-btn {
+        display: inline-block;
+    }
+
+    .product-demo .url-btn a:hover {
+        color: black;
+        text-decoration: none;
+        background: white;
+        border: 1px solid black;
+        transition: all 0.3s ease;
+    }
+
+    .product-demo .url-btn a {
+        padding: 10px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        background: black;
+        color: white;
+        font-weight: 700;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+    }
+</style>
