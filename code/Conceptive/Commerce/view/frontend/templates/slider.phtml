@@ -17,6 +17,10 @@
       display: block;
     }
 
+    .no-js .owl-carousel, .owl-carousel.owl-loaded {
+    display: block;
+}
+
     .fotorama-item {
       display: none;
     }
@@ -48,7 +52,6 @@
     .product-image-slider .screenshot-title {
       display: inline-block;
       position: relative;
-      /* right: 15%; */
       padding: 10px 0;
       margin: 15px 0;
     }
@@ -70,11 +73,63 @@
       top: 2px;
     }
 
-    /* .description-features div div {
-      margin: 7px 0;
-    } */
 
+    /* For Add to Cart */
 
+    button#product-addtocart-button {
+      background-color: black;
+      border: 1px solid black;
+      transition: all 0.3s ease;
+    }
+
+    button#product-addtocart-button:hover {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      transition: all 0.3s ease;
+    }
+
+     /* For wishlist and compare button*/
+
+    .product-addto-links a.action.towishlist, .product-addto-links a.action.tocompare{
+        background: black;
+        border: navajowhite;
+        padding: 9px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .product-addto-links a.action.towishlist:hover, .product-addto-links a.action.tocompare:hover {
+        background: white;
+        color: black;
+        border: 1px solid black;
+        transition: all 0.3s ease;
+    }
+
+    /* For Tabs  */
+
+    div#tab-label-description a#tab-label-description-title,
+    div#tab-label-reviews a#tab-label-reviews-title {
+        background: white;
+        color: black;
+        border: none;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    div#tab-label-description.active a#tab-label-description-title,
+    div#tab-label-reviews.active a#tab-label-reviews-title {
+        background: black;
+        color: white;
+    }
+
+    div#tab-label-description a#tab-label-description-title:hover,
+    div#tab-label-reviews a#tab-label-reviews-title:hover {
+        background: black;
+        color: white;
+        /* border: 1px solid black; */
+    }
+    
     /* For Mobile  */
 
     @media screen and (min-width:768px) {
@@ -145,17 +200,17 @@
   $product = $block->getCurrentProduct();
   $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
   $images = $product->getMediaGallery();
-
+  $imagesKeys = array_keys($images['images']);
+ 
   ?>
-  <div class="product-image-slider">
-    <div class="screenshot-title">
-      <h2 class="title">ScreenShots</h2>
-    </div>
-    <div class="owl-carousel owl-theme">
+  <?php
 
-      <?php
-
-      if (count($images) > 0) { ?>
+  if (count($imagesKeys) > 1) { ?>
+    <div class="product-image-slider">
+      <div class="screenshot-title">
+        <h2 class="title">ScreenShots</h2>
+      </div>
+      <div class="owl-carousel owl-theme">
         <?php
         $i = 0;
         foreach ($images as $image) {
@@ -180,11 +235,11 @@
         }
         ?>
 
-      <?php
-      }
-      ?>
+      </div>
     </div>
-  </div>
+  <?php
+  }
+  ?>
   <script>
     $(document).ready(function() {
       $('.owl-carousel').owlCarousel({
