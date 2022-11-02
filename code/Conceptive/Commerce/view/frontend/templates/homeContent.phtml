@@ -1,43 +1,315 @@
-<?php 
-    $productCollection = $block->getProductCollection();
+<?php
+$productCollection = $block->getProductCollection();
 ?>
+
+<!-- <?php
+
+        // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        // $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+        // $collection = $productCollection->create()
+        //     ->addAttributeToSelect('*')
+        //     ->load();
+
+        // //pass $product object as argument...
+        // $rattingCollection = array();
+        // foreach ($collection as $product) {
+        //     $_ratingSummary = $block->getRatingSummary($product);
+        //     $rattingCollection[] = $_ratingSummary;
+        // }
+        // foreach ($rattingCollection as $produc) {
+        //     echo "<pre>";
+        //     print_r($rattingCollection);
+        // }
+        // exit;
+        // $_reviewCount = $product->getRatingSummary()->getReviewsCount();
+        ?>
+<?php
+// if ($_ratingSummary) { 
+?>
+    <div class="product-reviews-summary short">
+        <div class="rating-summary">
+            <div title="<?php
+                        // echo (int)$_ratingSummary; 
+                        ?>%" class="rating-result">
+                <span style="width:<?php
+                                    // echo (int)$_ratingSummary; 
+                                    ?>%"><span><?php
+                                                // echo (int)$_ratingSummary; 
+                                                ?>%</span></span>
+            </div>
+        </div>
+        <div class="reviews-actions">
+            <?php
+            // echo __('(' . $_reviewCount . ')'); 
+            ?>
+        </div>
+    </div>
+<?php
+// }
+// } 
+?> -->
+
+
+
+
 
 
 <div class="homecontent">
     <div class="extensions">
         <div class="relink">
             <h2>Extensions that Helps You To Reach More</h2>
-            <p class="view-all-link"><a href="#">View All > </a></p>
+            <p class="view-all-link"><a href="http://localhost/magento244new/pub/gear/bags.html">View All > </a></p>
         </div>
-        <?php
-        foreach ($productCollection as $product) {   ?>
-        <div class="topproduct">
+        <div class="bestsell">
             <?php
-            // print_r($product->getData());     
-            // echo "<br>";
-        
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-            $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getId());
-            //echo  $products->getProductUrl(); 
+            foreach ($productCollection as $product) {
+                //  echo "<pre>";
+                //  print_r($product->debug());
 
-            $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
-            $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
-            //echo $image_url;
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
+                $prourl =  $products->getProductUrl();
+                // echo $prourl;
+                // print_r($products->debug());
 
-            echo "<img src=' $image_url '/>";
-            echo "<br>";
+                $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+                $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
+                //echo $image_url;
+            ?>
+                <a href="<?= $prourl; ?>" class="productlink">
+                    <div class="topproduct">
+                        <?php
+                        echo "<img src=' $image_url '/>";
+                        echo "";
 
-            echo $product->getName()."<br>";
-            echo "$".$product->getPrice()."<br>"; ?>
+                        echo "<p>" . $product->getProductName() . "</p>";
+                        echo "<p class='proprice'>$" . $product->getProductPrice() . "</p>"; ?>
+                    </div>
+                </a>
+            <?php
+            }
+            // exit;
+            ?>
         </div>
-        <?php
-     }
-?>
     </div>
     <div class="devlopments">
+        <div class="bestsell">
+            <?php
+            foreach ($productCollection as $product) {
+                //  echo "<pre>";
+                //  print_r($product->debug());
 
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
+                $prourl =  $products->getProductUrl();
+                // echo $prourl;
+                // print_r($products->debug());
+
+                $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+                $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
+                //echo $image_url;
+            ?>
+                <a href="<?= $prourl; ?>" class="productlink">
+                    <div class="topproduct">
+                        <?php
+                        echo "<img src=' $image_url '/>";
+                        echo "";
+
+                        echo "<p>" . $product->getProductName() . "</p>";
+                        echo "<p class='proprice'>$" . $product->getProductPrice() . "</p>"; ?>
+                    </div>
+                </a>
+            <?php
+            }
+            // exit;
+            ?>
+        </div>
+        <div class="relink">
+            <h2>Extensions that Helps You To Reach More</h2>
+            <p class="view-all-link"><a href="http://localhost/magento244new/pub/gear/bags.html">View All > </a></p>
+        </div>
     </div>
     <div class="industrial">
+        <div class="relink">
+            <h2>Extensions that Helps You To Reach More</h2>
+            <p class="view-all-link"><a href="http://localhost/magento244new/pub/gear/bags.html">View All > </a></p>
+        </div>
+        <div class="bestsell">
+            <?php
+            foreach ($productCollection as $product) {
+                //  echo "<pre>";
+                //  print_r($product->debug());
 
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
+                $prourl =  $products->getProductUrl();
+                // echo $prourl;
+                // print_r($products->debug());
+
+                $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+                $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
+                //echo $image_url;
+            ?>
+                <a href="<?= $prourl; ?>" class="productlink">
+                    <div class="topproduct">
+                        <?php
+                        echo "<img src=' $image_url '/>";
+                        echo "";
+
+                        echo "<p>" . $product->getProductName() . "</p>";
+                        echo "<p class='proprice'>$" . $product->getProductPrice() . "</p>"; ?>
+                    </div>
+                </a>
+            <?php
+            }
+            // exit;
+            ?>
+        </div>
     </div>
 </div>
+<style>
+    .extensions {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 25px 0px;
+    }
+
+    .devlopments {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 20px;
+        padding: 25px 0px;
+    }
+
+    .industrial {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 20px;
+        padding: 25px 0px;
+    }
+
+    .relink h2 {
+        line-height: 2;
+        color: #f4f4f4;
+        font-size: 34px;
+        font-weight: 500;
+        width: 70%;
+        text-align: center;
+    }
+
+    .productlink {
+        width: 45%;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        text-decoration: none;
+    }
+
+    .productlink:hover {
+        text-decoration: none;
+        box-shadow: 0 0 6px 0 #777;
+    }
+
+    .bestsell {
+        width: 50%;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        text-align: center;
+    }
+
+    .relink {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        border-radius: 30px;
+        width: 45%;
+    }
+
+    .relink:hover {
+        box-shadow: 0 0 15px 0 #3f3d3e;
+    }
+
+    p.view-all-link a {
+        color: #000;
+        background: #f4f4f4;
+        padding: 10px 25px;
+        text-decoration: none;
+        font-size: 34px;
+        font-weight: 500;
+        border-radius: 10px;
+    }
+
+    p.view-all-link a:hover {
+        background: #ccc;
+    }
+
+    p.view-all-link {
+        text-align: center;
+        padding: 50px 10px;
+    }
+
+    .topproduct img {
+        min-width: 60%;
+        margin: 15px;
+        box-shadow: 0 0 0 2px #eef9bc;
+        border-radius: 50%;
+    }
+
+    .topproduct p {
+        font-size: 15px;
+        font-weight: 600;
+        color: #000;
+    }
+
+    /* p.proprice {
+        font-size: 15px;
+        font-weight: 600;
+        color: #000;
+        float: right;
+        padding-right: 20px;
+    } */
+
+    @media only screen and (max-width: 768px) {
+        .relink {
+            width: 100%;
+            order: 1;
+        }
+
+        .relink h2 {
+            font-size: 20px;
+        }
+
+        .bestsell {
+            width: 100%;
+            order: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .productlink {
+            width: 45%;
+            min-height: 50%;
+        }
+
+        p.view-all-link a {
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        p.view-all-link {
+            padding: 20px 10px;
+        }
+
+        .topproduct img {
+            width: 40%;
+        }
+    }
+</style>
