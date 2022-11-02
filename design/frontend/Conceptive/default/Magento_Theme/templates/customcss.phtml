@@ -35,7 +35,7 @@
             display: none;
         }
 
-        header.page-header a,
+        /* header.page-header a,
         .alink {
             color: #f4f4f4;
         }
@@ -43,11 +43,14 @@
         header.page-header a:visited,
         .alink:visited {
             color: #f4f4f4;
+        } */
+        #clickme {
+            color: #f4f4f4;
         }
 
         header.page-header a:hover,
         .alink:hover {
-            color: #ccc;
+            color: #000;
             text-decoration: none;
         }
 
@@ -150,7 +153,8 @@
             width: 20%;
             display: none;
         }
-        .search-autocomplete{
+
+        .search-autocomplete {
             color: #000;
         }
 
@@ -247,6 +251,20 @@
                 padding-left: 30px;
                 width: 35%;
             }
+        }
+
+
+        /* Process to checkout button */
+        
+        button#top-cart-btn-checkout {
+            background: black;
+        }
+
+        button#top-cart-btn-checkout:hover {
+            background: white;
+            color: black;
+            border: 1px solid black;
+            transition: all 0.3s ease-in;
         }
     </style>
 </head>
