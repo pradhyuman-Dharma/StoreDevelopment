@@ -17,8 +17,9 @@
       display: block;
     }
 
-    .no-js .owl-carousel, .owl-carousel.owl-loaded {
-        display: block;
+    .no-js .owl-carousel,
+    .owl-carousel.owl-loaded {
+      display: block;
     }
 
     .fotorama-item {
@@ -89,47 +90,48 @@
       transition: all 0.3s ease;
     }
 
-     /* For wishlist and compare button*/
+    /* For wishlist and compare button*/
 
-    .product-addto-links a.action.towishlist, .product-addto-links a.action.tocompare{
-        background: black;
-        border: navajowhite;
-        padding: 9px;
-        color: white;
-        transition: all 0.3s ease;
+    .product-addto-links a.action.towishlist,
+    .product-addto-links a.action.tocompare {
+      background: black;
+      border: navajowhite;
+      padding: 9px;
+      color: white;
+      transition: all 0.3s ease;
     }
 
-    .product-addto-links a.action.towishlist:hover, .product-addto-links a.action.tocompare:hover {
-        background: white;
-        color: black;
-        border: 1px solid black;
-        transition: all 0.3s ease;
+    .product-addto-links a.action.towishlist:hover,
+    .product-addto-links a.action.tocompare:hover {
+      background: white;
+      color: black;
+      border: 1px solid black;
+      transition: all 0.3s ease;
     }
 
     /* For Tabs  */
 
-    div#tab-label-description a#tab-label-description-title,
-    div#tab-label-reviews a#tab-label-reviews-title {
-        background: white;
-        color: black;
-        border: none;
-        text-transform: uppercase;
-        transition: all 0.3s ease;
+    .product.info.detailed .data.item.title a.data.switch {
+      background: white;
+      color: black;
+      border: none;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in;
     }
 
-    div#tab-label-description.active a#tab-label-description-title,
-    div#tab-label-reviews.active a#tab-label-reviews-title {
-        background: black;
-        color: white;
+    .product.info.detailed .data.item.title.active a.data.switch {
+      background: black;
+      color: white;
+      border: 1px solid black;
     }
 
-    div#tab-label-description a#tab-label-description-title:hover,
-    div#tab-label-reviews a#tab-label-reviews-title:hover {
-        background: black;
-        color: white;
-        /* border: 1px solid black; */
+    .product.info.detailed .data.item.title.active a.data.switch:hover,
+    .product.info.detailed .data.item.title a.data.switch:hover {
+      background: black;
+      color: white;
+      border: 1px solid black;
     }
-    
+
     /* For Mobile  */
 
     @media screen and (min-width:768px) {
@@ -201,7 +203,7 @@
   $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
   $images = $product->getMediaGallery();
   $imagesKeys = array_keys($images['images']);
- 
+
   ?>
   <?php
 
