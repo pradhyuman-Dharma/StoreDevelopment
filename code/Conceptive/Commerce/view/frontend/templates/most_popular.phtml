@@ -1,0 +1,77 @@
+<div class="popular-div">
+    <strong>Most Popular:</strong>
+
+    <?php
+    $productCollection = $block->getBestSellerProductsCollection();
+    foreach ($productCollection as $product) {
+        $productData = $block->getProduct($product->getProductId());
+        $productName = $productData->getName();
+        $productUrl = $productData->getProductUrl();
+
+        $productId = $product->getProductId(); //this is child product id
+        $productObj = $block->getConfigurableProdId($productId);
+        if (isset($productObj[0])) {
+            $prodId = $productObj[0];
+            $products = $block->getConfigurableProd($prodId);
+            $productName = $products->getName();
+            $productUrl = $products->getProductUrl();
+        }
+    ?>
+
+        <div class="most-popular-product-link">
+            <a href="<?= $productUrl ?>" target="_blank"><span><?= $productName ?></span></a>
+        </div>
+
+    <?php
+    }
+    ?>
+</div>
+
+<style>
+    .most-popular {
+        border: 1px dashed #000;
+        padding: 22px 10px;
+        border-radius: 16px;
+        margin: 14px auto;
+        margin-top: 0;
+    }
+
+
+    .popular-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 14px;
+        gap: 30px 10px;
+        text-transform: capitalize;
+    }
+
+    .most-popular-product-link a {
+        color: #fff;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 74px;
+        background-color: #000;
+        transition: all 0.3s ease-in;
+    }
+
+    .most-popular-product-link a:hover {
+        text-decoration: none;
+        background: white;
+        color: black;
+        box-shadow: 0 0 2px black;
+    }
+
+    /* Page Title */
+    .page-title-wrapper h1.page-title {
+        margin-bottom: 15px;
+    }
+
+    @media screen and (max-width:767px) {
+        .most-popular {
+            margin: 14px;
+            margin-top: 0;
+        }
+    }
+</style>

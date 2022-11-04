@@ -24,7 +24,9 @@
             padding: 10px 0px 0px 10px;
             margin: 0px;
         }
-
+        .sections.nav-sections{
+            display: block;
+        }
         .logo img {
             width: 100%;
             height: auto;
@@ -83,6 +85,18 @@
             background-color: #f4f4f4;
         }
 
+        ul.header.links {
+            padding-top: 20px;
+            text-align: left;
+            position: fixed;
+            top: 10%;
+            width: 300px;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 20;
+            background-color: #f4f4f4;
+        }
+
         button.btn.cancel {
             background-color: red;
             margin: 20px;
@@ -125,7 +139,7 @@
         }
 
         .minicart-wrapper {
-            display: inline-block;
+            /* display: inline-block; */
             position: relative;
             float: right;
             margin: 10px;
@@ -157,6 +171,14 @@
         .search-autocomplete {
             color: #000;
         }
+
+        #custompop{
+            display: none;
+        }
+        .custompop ul.header.links{
+            z-index: 999;
+        }
+
 
         @media only screen and (max-width: 768px) {
             .header.content {
@@ -299,7 +321,7 @@
             </span>
         <?php } else { ?>
             <span>
-                <a href="<?php echo $url . 'customer/account/login'; ?>">Sign In</a>
+                <a href="<?php echo $url . 'customer/account/login/referer/aHR0cDovL2xvY2FsaG9zdC9tYWdlbnRvMjQ0bmV3L3B1Yi8%2C/'; ?>">Sign In</a>
 
                 <!-- <a href="<?= $url ?>customer/account/login/referer/"> Sign In </a> -->
             </span>
@@ -311,14 +333,15 @@
         ?>
         <!-- <button type="button" class="btn cancel">Close</button> -->
     </div>
+    <!-- <div class="custompop" onmouseover="openForm()" onmouseout="closeForm()">
 
+    </div> -->
     <script>
         function openForm() {
-            document.getElementById("usr_popup").style.display = "block";
+            document.getElementById("custompop").style.display = "block";
         }
-
         function closeForm() {
-            document.getElementById("usr_popup").style.display = "none";
+            document.getElementById("custompop").style.display = "none";
         }
     </script>
 

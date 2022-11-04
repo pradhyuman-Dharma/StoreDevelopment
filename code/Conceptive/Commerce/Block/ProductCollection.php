@@ -53,6 +53,12 @@ class ProductCollection extends \Magento\Framework\View\Element\Template
         return $prodetail;
     }
 
+    public function getUserLogin(){
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $customerSession = $objectManager->get('Magento\Customer\Model\Session');
+        return $customerSession;
+    }
+
     // public function getRating()
     // {
     //     $collection = $this->getProductCollection();
