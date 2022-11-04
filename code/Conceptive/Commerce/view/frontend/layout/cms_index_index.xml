@@ -3,7 +3,7 @@
     <body>
         <referenceContainer name="content">
             <!-- <block class="Conceptive\Commerce\Block\Hello" name="home.custome" template="Conceptive_Commerce::view.phtml" /> -->
-            <block class="Conceptive\Commerce\Block\Product" name="top_products" template="Conceptive_Commerce::homeContent.phtml" />
+            <block class="Conceptive\Commerce\Block\ProductCollection" name="top_products" template="Conceptive_Commerce::homeContent.phtml" />
 
         </referenceContainer>
     </body>
