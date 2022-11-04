@@ -1,44 +1,56 @@
 <?php
 
 namespace Conceptive\Commerce\Block;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection;
 use \Magento\Store\Model\StoreManagerInterface ;
 use \Magento\Review\Model\ReviewFactory ;
+use Magento\Catalog\Model\Product ;
+use \Magento\Catalog\Helper\Image;
 
-class Product extends \Magento\Framework\View\Element\Template
+class ProductCollection extends \Magento\Framework\View\Element\Template
 {
-    protected $_productCollectionFactory;
+    protected $_productRepository;
     protected $_bestSellers;
     protected $_storeManager;
     protected $_reviewFactory;
+    protected $_productModel;
+    protected $imageHelper;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
-        // Factory $productCollectionFactory,
+        ProductRepositoryInterface $productRepository,
         StoreManagerInterface $storeManager,
         ReviewFactory $reviewFactory,
+        Product $productModel,
+        Image $imageHelper,
         Collection $bestSellers,
         array $data = []
     ) {
-        // $this->_productCollectionFactory = $productCollectionFactory;
+        $this->_productRepository = $productRepository;
         $this->_bestSellers = $bestSellers;
         $this->_storeManager = $storeManager;
         $this->_reviewFactory = $reviewFactory;
+        $this->_productModel = $productModel;
+        $this->imageHelper = $imageHelper;
         parent::__construct($context, $data);
     }
 
 
-    public function getProductCollection()
+    public function getBestSellers()
     {
         $bestProducts = $this->_bestSellers->setPeriod('year')->setPageSize(4);
-        //$collection->setPeriod('month');
-        //$collection->setPeriod('day');
-
-        // foreach ($this->_bestSellers as $item) {
-        //     // echo "<pre>";  print_r($item->getData());
-        // }
         return $bestProducts;
+    }
+    public function getImage($product)
+    {
+        $productDetail = $this->_productModel->load($product->getProductId());
+        $image_url = $this->imageHelper->init($productDetail, 'product_page_image_small')->setImageFile($productDetail->getFile())->getUrl();
+        return $image_url;
+    }
+    public function getProDetails($productId){
+        $prodetail = $this->_productRepository->getById($productId);
+        return $prodetail;
     }
 
     // public function getRating()

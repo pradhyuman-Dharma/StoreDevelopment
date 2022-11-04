@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <style>
+        #usr_popup {
+            display: none;
+            text-align: left;
+            position: fixed;
+            top: 10%;
+            right: 15px;
+            z-index: 20;
+        }
+
+        /* Process to checkout button */
+
+        button#top-cart-btn-checkout {
+            background: black;
+            border: 1px solid black;
+        }
+
+        button#top-cart-btn-checkout:hover {
+            background: white;
+            color: black;
+            border: 1px solid black;
+            transition: all 0.3s ease-in;
+        }
+
+        /* Profile MenuBar */
+
+        .custom_not_logged_in,
+        .custom_logged_in {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom_not_logged_in ul,
+        .custom_logged_in ul {
+            width: 250px;
+            height: 105px;
+            border-radius: 5px;
+            background-color: white;
+            padding: 0;
+            margin-bottom: 0;
+        }
+
+        .custom_not_logged_in ul li,
+        .custom_logged_in ul li {
+            list-style-type: none;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+
+        .custom_not_logged_in ul li a,
+        .custom_logged_in ul li a {
+            margin: 0 15px;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .custom_not_logged_in ul hr,
+        .custom_logged_in ul hr {
+            display: inline-block;
+            width: 230px;
+            margin: 5px;
+        }
+
+        .custom_not_logged_in ul li:hover,
+        .custom_logged_in ul li:hover {
+            background-color: rgba(232, 232, 232, 0.4);
+        }
+
+        .custom_not_logged_in ul li a:hover,
+        .custom_logged_in ul li a:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Customer Loggedin */
+
+        .custom_logged_in ul {
+            height: 170px;
+        }
+
+        .custom_logged_in ul li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            #usr_popup {
+                top: 25%;
+            }
+
+            .userAcc {
+                margin: 10px 60px 5px 5px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+    $customerSession = $this->session;
+    ?>
+    <?php
+    $url = $block->getBaseUrl();
+    ?>
+    <a href="<?php echo $block->getBaseUrl(); ?>" class="mobile-logo"> <img src="<?php echo $block->getViewFileUrl('images/Vector-7.svg'); ?>" class="mobilelogo"></a>
+
+
+    <div class="userAcc">
+        <a href="#" id="clickme" onmouseover="openForm()"><i class="fa-solid fa-circle-user"></i></a>
+    </div>
+
+    <?php
+    if ($customerSession->isLoggedIn()) {
+    ?>
+        <div class="custom_logged_in" id="usr_popup" onmouseover="openForm()" onmouseout="closeForm()">
+            <ul>
+                <li class="sub-item">
+                    <a href="<?= $url . "customer/account/" ?>"><span class="material-icons-outlined"> person </span>
+                        <span>My Account</span>
+                    </a>
+                </li>
+                <li class="sub-item">
+                    <a href="<?= $url . "wishlist" ?>"><span class="material-icons-outlined"> favorite_border </span>
+                        <span>My Wish List</span>
+                    </a>
+                </li>
+                <li class="sub-item">
+                    <a href="<?= $url . "customer/account/logout" ?>"><span class="material-icons-outlined"> logout </span>
+                        <span> Logout</span>
+                    </a>
+                </li>
+                <hr>
+            </ul>
+        </div>
+
+    <?php
+    } else {
+    ?>
+
+        <div class="custom_not_logged_in" id="usr_popup" onmouseover="openForm()" onmouseout="closeForm()">
+            <ul>
+                <li class="sub-item">
+                    <a href="<?= $url . "customer/account/login" ?>">Sign In</a>
+                </li>
+                <li class="sub-item">
+                    <a href="<?= $url . "customer/account/create" ?>">Create Account</a>
+                </li>
+                <hr>
+            </ul>
+        </div>
+
+    <?php
+    }
+    ?>
+
+    <script>
+        function openForm() {
+            document.getElementById("usr_popup").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("usr_popup").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

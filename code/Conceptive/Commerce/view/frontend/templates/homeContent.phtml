@@ -1,5 +1,5 @@
 <?php
-$productCollection = $block->getProductCollection();
+$productCollection = $block->getBestSellers();
 ?>
 
 <!-- <?php
@@ -52,8 +52,6 @@ $productCollection = $block->getProductCollection();
 
 
 
-
-
 <div class="homecontent">
     <div class="extensions">
         <div class="relink">
@@ -63,65 +61,69 @@ $productCollection = $block->getProductCollection();
         <div class="bestsell">
             <?php
             foreach ($productCollection as $product) {
-                //  echo "<pre>";
-                //  print_r($product->debug());
+                
+                $productId = $product->getProductId();
+                $prodetail = $block->getProDetails($productId);
+                $prourl = $prodetail->getProductUrl();
+                $productName = $prodetail->getName();
 
-                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
-                $prourl =  $products->getProductUrl();
-                // echo $prourl;
-                // print_r($products->debug());
-
-                $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
-                $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
-                //echo $image_url;
+                $blockInstance= $block->getLayout()->createBlock('Conceptive\Commerce\Block\Index');
+                $productObj = $blockInstance->getConfigurableProdId($productId);
+                if (isset($productObj[0])) {
+                    $prodId = $productObj[0];
+                    $products = $blockInstance->getConfigurableProd($prodId);
+                    $productName = $products->getName();
+                    $prourl = $products->getProductUrl();
+                }
+                
+                $image_url = $block->getImage($product);
             ?>
                 <a href="<?= $prourl; ?>" class="productlink">
                     <div class="topproduct">
                         <?php
                         echo "<img src=' $image_url '/>";
-                        echo "";
-
-                        echo "<p>" . $product->getProductName() . "</p>";
-                        echo "<p class='proprice'>$" . $product->getProductPrice() . "</p>"; ?>
+                        echo "<p>" .  $productName . "</p>";
+                        echo "<p class='proprice'>$" . round($product->getProductPrice()) . "</p>"; ?>
                     </div>
                 </a>
             <?php
-            }
+            } 
             // exit;
             ?>
         </div>
     </div>
     <div class="devlopments">
-        <div class="bestsell">
+    <div class="bestsell">
             <?php
             foreach ($productCollection as $product) {
-                //  echo "<pre>";
-                //  print_r($product->debug());
+                
+                $productId = $product->getProductId();
+                $prodetail = $block->getProDetails($productId);
+                $prourl = $prodetail->getProductUrl();
+                $productName = $prodetail->getName();
 
-                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
-                $prourl =  $products->getProductUrl();
-                // echo $prourl;
-                // print_r($products->debug());
-
-                $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
-                $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
-                //echo $image_url;
+                $blockInstance= $block->getLayout()->createBlock('Conceptive\Commerce\Block\Index');
+                $productObj = $blockInstance->getConfigurableProdId($productId);
+                if (isset($productObj[0])) {
+                    $prodId = $productObj[0];
+                    $products = $blockInstance->getConfigurableProd($prodId);
+                    $productName = $products->getName();
+                    $prourl = $products->getProductUrl();
+                }
+                
+                $image_url = $block->getImage($product);
             ?>
                 <a href="<?= $prourl; ?>" class="productlink">
                     <div class="topproduct">
                         <?php
                         echo "<img src=' $image_url '/>";
-                        echo "";
-
-                        echo "<p>" . $product->getProductName() . "</p>";
-                        echo "<p class='proprice'>$" . $product->getProductPrice() . "</p>"; ?>
+                        echo "<p>" . $productName . "</p>";
+                        echo "<p class='proprice'>$" . round($product->getProductPrice()) . "</p>"; ?>
                     </div>
                 </a>
             <?php
-            }
-            // exit;
+            } 
+            
             ?>
         </div>
         <div class="relink">
@@ -137,31 +139,32 @@ $productCollection = $block->getProductCollection();
         <div class="bestsell">
             <?php
             foreach ($productCollection as $product) {
-                //  echo "<pre>";
-                //  print_r($product->debug());
+                
+                $productId = $product->getProductId();
+                $prodetail = $block->getProDetails($productId);
+                $productName = $prodetail->getName();
 
-                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                $products = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
-                $prourl =  $products->getProductUrl();
-                // echo $prourl;
-                // print_r($products->debug());
-
-                $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
-                $image_url = $imageHelper->init($products, 'product_page_image_small')->setImageFile($products->getFile())->getUrl();
-                //echo $image_url;
+                $blockInstance= $block->getLayout()->createBlock('Conceptive\Commerce\Block\Index');
+                $productObj = $blockInstance->getConfigurableProdId($productId);
+                if (isset($productObj[0])) {
+                    $prodId = $productObj[0];
+                    $products = $blockInstance->getConfigurableProd($prodId);
+                    $productName = $products->getName();
+                    $prourl = $products->getProductUrl();
+                }
+                
+                $image_url = $block->getImage($product);
             ?>
                 <a href="<?= $prourl; ?>" class="productlink">
                     <div class="topproduct">
                         <?php
                         echo "<img src=' $image_url '/>";
-                        echo "";
-
-                        echo "<p>" . $product->getProductName() . "</p>";
-                        echo "<p class='proprice'>$" . $product->getProductPrice() . "</p>"; ?>
+                        echo "<p>" . $productName . "</p>";
+                        echo "<p class='proprice'>$" . round($product->getProductPrice()) . "</p>"; ?>
                     </div>
                 </a>
             <?php
-            }
+            } 
             // exit;
             ?>
         </div>
@@ -233,7 +236,7 @@ $productCollection = $block->getProductCollection();
     }
 
     .relink:hover {
-        box-shadow: 0 0 15px 0 #3f3d3e;
+        box-shadow: 0 0 15px 0 #040404;
     }
 
     p.view-all-link a {
@@ -257,8 +260,9 @@ $productCollection = $block->getProductCollection();
 
     .topproduct img {
         min-width: 60%;
+        max-width: 60%;
         margin: 15px;
-        box-shadow: 0 0 0 2px #eef9bc;
+        box-shadow: 0 0 0 2px #ccc;
         border-radius: 50%;
     }
 
