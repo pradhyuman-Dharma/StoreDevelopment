@@ -1,7 +1,12 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+    <move element="category.description" destination="content" after="-" />
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\Template" name="custom.css" template="Conceptive_Commerce::custom_css.phtml" />
+        </referenceContainer>
+
+         <referenceContainer name="header-wrapper">
+            <block class="Conceptive\Commerce\Block\Index" name="profile.menu" template="Conceptive_Commerce::profileMenu.phtml" after="logo"/>
         </referenceContainer>
     </body>
 </page>

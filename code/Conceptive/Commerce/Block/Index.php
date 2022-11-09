@@ -7,6 +7,7 @@ use Magento\Catalog\Model\Product;
 use Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection;
 use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Customer\Model\Session;
 
 class Index extends Template
 {
@@ -21,6 +22,8 @@ class Index extends Template
 
     protected $configurableProd;
 
+    public $session;
+
     /**
      * Hello constructor.
      * @param Template\Context $context
@@ -34,6 +37,7 @@ class Index extends Template
         Collection $bestSellers,
         Configurable $configurable,
         ProductRepositoryInterface $configurableProd,
+        Session $session,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -42,6 +46,7 @@ class Index extends Template
         $this->_bestSellers = $bestSellers;
         $this->configurable = $configurable;
         $this->configurableProd = $configurableProd;
+        $this->session = $session;
     }
 
     public function getCurrentProductId(){

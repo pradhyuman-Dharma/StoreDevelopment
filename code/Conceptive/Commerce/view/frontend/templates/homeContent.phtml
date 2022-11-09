@@ -80,50 +80,70 @@ $productCollection = $block->getBestSellers();
         <div class="bestsell">
             <?php
             foreach ($productCollection as $product) {
-                
+
                 $productId = $product->getProductId();
                 $prodetail = $block->getProDetails($productId);
                 $prourl = $prodetail->getProductUrl();
-                // echo $prourl;
-                
+                $productName = $prodetail->getName();
+
+                $blockInstance = $block->getLayout()->createBlock('Conceptive\Commerce\Block\Index');
+                $productObj = $blockInstance->getConfigurableProdId($productId);
+
+                if (isset($productObj[0])) {
+                    $prodId = $productObj[0];
+                    $products = $blockInstance->getConfigurableProd($prodId);
+                    $productName = $products->getName();
+                    $prourl = $products->getProductUrl();
+                }
+
                 $image_url = $block->getImage($product);
             ?>
                 <a href="<?= $prourl; ?>" class="productlink">
                     <div class="topproduct">
                         <?php
                         echo "<img src=' $image_url '/>";
-                        echo "<p>" . $product->getProductName() . "</p>";
+                        echo "<p>" .  $productName . "</p>";
                         echo "<p class='proprice'>$" . round($product->getProductPrice()) . "</p>"; ?>
                     </div>
                 </a>
             <?php
-            } 
+            }
             // exit;
             ?>
         </div>
     </div>
     <div class="devlopments">
-    <div class="bestsell">
+        <div class="bestsell">
             <?php
             foreach ($productCollection as $product) {
-                
+
                 $productId = $product->getProductId();
                 $prodetail = $block->getProDetails($productId);
                 $prourl = $prodetail->getProductUrl();
-                // echo $prourl;
-                
+                $productName = $prodetail->getName();
+
+                $blockInstance = $block->getLayout()->createBlock('Conceptive\Commerce\Block\Index');
+                $productObj = $blockInstance->getConfigurableProdId($productId);
+
+                if (isset($productObj[0])) {
+                    $prodId = $productObj[0];
+                    $products = $blockInstance->getConfigurableProd($prodId);
+                    $productName = $products->getName();
+                    $prourl = $products->getProductUrl();
+                }
+
                 $image_url = $block->getImage($product);
             ?>
                 <a href="<?= $prourl; ?>" class="productlink">
                     <div class="topproduct">
                         <?php
                         echo "<img src=' $image_url '/>";
-                        echo "<p>" . $product->getProductName() . "</p>";
+                        echo "<p>" .  $productName . "</p>";
                         echo "<p class='proprice'>$" . round($product->getProductPrice()) . "</p>"; ?>
                     </div>
                 </a>
             <?php
-            } 
+            }
             // exit;
             ?>
         </div>
@@ -140,24 +160,34 @@ $productCollection = $block->getBestSellers();
         <div class="bestsell">
             <?php
             foreach ($productCollection as $product) {
-                
+
                 $productId = $product->getProductId();
                 $prodetail = $block->getProDetails($productId);
                 $prourl = $prodetail->getProductUrl();
-                // echo $prourl;
-                
+                $productName = $prodetail->getName();
+
+                $blockInstance = $block->getLayout()->createBlock('Conceptive\Commerce\Block\Index');
+                $productObj = $blockInstance->getConfigurableProdId($productId);
+
+                if (isset($productObj[0])) {
+                    $prodId = $productObj[0];
+                    $products = $blockInstance->getConfigurableProd($prodId);
+                    $productName = $products->getName();
+                    $prourl = $products->getProductUrl();
+                }
+
                 $image_url = $block->getImage($product);
             ?>
                 <a href="<?= $prourl; ?>" class="productlink">
                     <div class="topproduct">
                         <?php
                         echo "<img src=' $image_url '/>";
-                        echo "<p>" . $product->getProductName() . "</p>";
+                        echo "<p>" .  $productName . "</p>";
                         echo "<p class='proprice'>$" . round($product->getProductPrice()) . "</p>"; ?>
                     </div>
                 </a>
             <?php
-            } 
+            }
             // exit;
             ?>
         </div>
@@ -252,11 +282,18 @@ $productCollection = $block->getBestSellers();
     }
 
     .topproduct img {
-        min-width: 60%;
+        border-radius: 5%;
+        padding: 15px;
+        min-width: 50%;
+        max-width: 50%;
+        box-shadow: 0 0 20px #ddd;
+        margin: 25px auto;
+
+        /* min-width: 60%;
         max-width: 60%;
         margin: 15px;
         box-shadow: 0 0 0 2px #ccc;
-        border-radius: 50%;
+        border-radius: 50%; */
     }
 
     .topproduct p {
