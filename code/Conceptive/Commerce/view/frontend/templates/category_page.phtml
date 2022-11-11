@@ -23,27 +23,27 @@
     } */
 
     /* For making product images circle */
-    .product-item-info {
+    li.item.product.product-item .product-item-info {
         border: 1px solid #ddd;
         border-radius: 16px;
     }
 
-    .product.details.product-item-details strong.product.name.product-item-name {
+    li.item.product.product-item .product.details.product-item-details strong.product.name.product-item-name {
         text-align: center;
         padding: 0 1px;
     }
 
-    .product-reviews-summary.short {
+    li.item.product.product-item .product-reviews-summary.short {
         display: inline-block;
         float: left;
         margin-left: 10px;
     }
 
-    span.product-image-wrapper {
+    li.item.product.product-item span.product-image-wrapper {
         padding-bottom: 80%;
     }
 
-    .product-item-info img.product-image-photo {
+    li.item.product.product-item .product-item-info img.product-image-photo {
         border-radius: 50%;
         min-width: 65%;
         max-width: 65%;
@@ -52,11 +52,11 @@
         margin-top: 20px;
     }
 
-    span.product-image-container span.product-image-wrapper {
+    li.item.product.product-item span.product-image-container span.product-image-wrapper {
         padding-bottom: 80% !important;
     }
 
-    .product-item-info:hover {
+    li.item.product.product-item .product-item-info:hover {
         box-shadow: 0 0 6px 0 #777;
     }
 
@@ -64,7 +64,7 @@
         margin-top: 5px;
     }
 
-    .product-item .price-box {
+    li.item.product.product-item .price-box {
         margin: 19px 0 25px;
         text-align: center;
     }
@@ -117,7 +117,7 @@
     }
 
     @media screen and (max-width:372px) {
-        div.product-item-info {
+        li.item.product.product-item div.product-item-info {
             min-height: 245px;
             max-height: 245px;
         }
@@ -128,6 +128,13 @@
             position: absolute;
             top: 3px;
             right: 245px;
+        }
+    }
+
+    @media screen and (min-width:640px){
+        li.item.product.product-item .product-item-info {
+            min-height: 275px;
+            max-height: 275px;
         }
     }
 </style>
