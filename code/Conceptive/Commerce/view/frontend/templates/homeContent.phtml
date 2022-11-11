@@ -1,24 +1,6 @@
 <?php
-// $customerSession = $block->getUserLogin();
-// $url  = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
-// $login_url = $block->getUrl('customer/account/login');
-
-// // echo $url;
-// $login_url;exit;
-// $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-// 	$customerSession = $objectManager->get('Magento\Customer\Model\Session');
-//    echo "<pre>";
-//     print_r($customerSession->getData()); exit;
-// if($customerSession->isLoggedIn()) {
-//    echo "hyyyyyyyyyyyyyyyyyyyyyyyyyy"; exit;
-// }
-// else{
-//     echo "byyyyyyyyyyyyyyyyyy";
-//     exit;
-// }            
-
-
 $productCollection = $block->getBestSellers();
+$categories = $this->getCategoryCollection();
 ?>
 
 <!-- <?php
@@ -69,13 +51,11 @@ $productCollection = $block->getBestSellers();
 ?> -->
 
 
-
-
 <div class="homecontent">
     <div class="extensions">
         <div class="relink">
             <h2>Extensions that Helps You To Reach More</h2>
-            <p class="view-all-link"><a href="http://localhost/magento244new/pub/gear/bags.html">View All > </a></p>
+            <p class="view-all-link"><a href="<? $block->getBaseUrl(); ?>magento-2-extension.html">View All <i class="fa-solid fa-greater-than"></i> </a></p>
         </div>
         <div class="bestsell">
             <?php
@@ -248,6 +228,12 @@ $productCollection = $block->getBestSellers();
         text-align: center;
     }
 
+    i.fa-solid.fa-greater-than {
+        font-size: 30px;
+        padding-left: 5px;
+        font-weight: 500;
+    }
+
     .relink {
         display: flex;
         flex-direction: column;
@@ -274,6 +260,7 @@ $productCollection = $block->getBestSellers();
 
     p.view-all-link a:hover {
         background: #ccc;
+        font-weight: 600;
     }
 
     p.view-all-link {
@@ -344,6 +331,12 @@ $productCollection = $block->getBestSellers();
 
         .topproduct img {
             width: 40%;
+        }
+
+        i.fa-solid.fa-greater-than {
+            font-size: 20px;
+            padding-left: 5px;
+            font-weight: 400;
         }
     }
 </style>

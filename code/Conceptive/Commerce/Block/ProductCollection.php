@@ -1,12 +1,14 @@
 <?php
 
 namespace Conceptive\Commerce\Block;
+
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Sales\Model\ResourceModel\Report\Bestsellers\Collection;
 use \Magento\Store\Model\StoreManagerInterface ;
 use \Magento\Review\Model\ReviewFactory ;
 use Magento\Catalog\Model\Product ;
 use \Magento\Catalog\Helper\Image;
+use \Magento\Catalog\Helper\Category;
 
 class ProductCollection extends \Magento\Framework\View\Element\Template
 {
@@ -16,6 +18,7 @@ class ProductCollection extends \Magento\Framework\View\Element\Template
     protected $_reviewFactory;
     protected $_productModel;
     protected $imageHelper;
+    protected $_categoryHelper;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -24,6 +27,7 @@ class ProductCollection extends \Magento\Framework\View\Element\Template
         ReviewFactory $reviewFactory,
         Product $productModel,
         Image $imageHelper,
+        Category $categoryHelper,
         Collection $bestSellers,
         array $data = []
     ) {
@@ -33,6 +37,7 @@ class ProductCollection extends \Magento\Framework\View\Element\Template
         $this->_reviewFactory = $reviewFactory;
         $this->_productModel = $productModel;
         $this->imageHelper = $imageHelper;
+        $this->_categoryHelper = $categoryHelper;
         parent::__construct($context, $data);
     }
 
@@ -58,7 +63,11 @@ class ProductCollection extends \Magento\Framework\View\Element\Template
         $customerSession = $objectManager->get('Magento\Customer\Model\Session');
         return $customerSession;
     }
-
+    public function getCategoryCollection()
+    {
+        $categories = $this->_categoryHelper->getStoreCategories();
+        return $categories;
+    }
     // public function getRating()
     // {
     //     $collection = $this->getProductCollection();

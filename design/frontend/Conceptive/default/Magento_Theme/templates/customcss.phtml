@@ -13,7 +13,7 @@
     }
 
     .logo {
-        width: 30%;
+        width: 25%;
         padding: 10px 0px 0px 10px;
         margin: 0px;
     }
@@ -68,15 +68,19 @@
         margin: 20px;
         padding: 15px 40px;
     }
-    .navigation .level0.parent > .level-top{
+
+    .navigation .level0.parent>.level-top {
         padding-right: 25px;
     }
-    .navigation .level0.parent > .level-top > .ui-menu-icon:after{
+
+    .navigation .level0.parent>.level-top>.ui-menu-icon:after {
         font-size: 35px;
     }
-    .navigation .level0 .submenu li.parent > a > .ui-menu-icon:after{
+
+    .navigation .level0 .submenu li.parent>a>.ui-menu-icon:after {
         font-size: 35px;
     }
+
     /* div#usr_popup span a {
         color: #000;
         margin: 5px;
@@ -151,6 +155,10 @@
             padding-top: 10px;
         }
 
+        .has-toggle.search-sections {
+            float: right;
+        }
+
         .nav-toggle {
             position: absolute;
             top: 20px;
@@ -191,15 +199,29 @@
         .block-search .control {
             border: none;
         }
+
+        .block-search .label.active+.control input {
+            border: none;
+            position: absolute;
+            left: 20%;
+            width: 60%;
+            top: 60%;
+        }
+
+        #ajaxsearchpopup {
+            top: 50px;
+        }
     }
 
     @media (min-width: 320px) and (max-width: 767px) {
         .sections.nav-sections {
             background: black;
         }
-	.userAcc{
-	 margin: 10px 50px 5px 5px;
-	}
+
+        .userAcc {
+            margin: 10px 50px 5px 5px;
+        }
+
         .nav-toggle:hover:before {
             color: #f4f4f4;
         }
@@ -207,6 +229,14 @@
         .block-search {
             width: 30%;
         }
+
+        /* .block-search input {
+            font-size: 16px;
+            margin: 15px 0;
+            position: absolute;
+            left: 0;
+            box-shadow: 0 0 25px 0;
+        } */
     }
 
     @media (min-width: 768px) {
@@ -230,8 +260,21 @@
 
         .block-search {
             float: left;
-            padding-left: 30px;
-            width: 35%;
+            padding-left: 50px;
+            width: 40%;
         }
+    }
+
+    .ajaxsearch__title {
+        width: 100%;
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .ajaxsearch .ajaxsearch__price {
+
+        width: 100%;
+        font-size: 18px;
+        padding: 5px 10px;
     }
 </style>

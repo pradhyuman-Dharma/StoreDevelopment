@@ -1,3 +1,6 @@
+<?php
+    $categories = $this->getCategoryCollection();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,17 +23,17 @@
         </div>
         <div class="explore">
             <ul class="footerLinks">
-                <li class="nav item">
-                    <a href="#">Magento® 2 Extension</a>
+                <?php
+                 foreach($categories as $category){
+                     $name = $category->getName();
+                     $url = $category->getRequestPath();
+                     ?>
+                     <li class="nav item">
+                    <a href="<?= $url ?>"><?= $name  ?></a>
                 </li>
+                <?php }?>
                 <li class="nav item">
-                    <a href="#">Wordpress</a>
-                </li>
-                <li class="nav item">
-                    <a href="#">Shopify</a>
-                </li>
-                <li class="nav item">
-                    <a href="#">Services</a>
+                    <a href="">Services</a>
                 </li>
                 <div class="socialLink">
                     <p>Get in Touch</p>

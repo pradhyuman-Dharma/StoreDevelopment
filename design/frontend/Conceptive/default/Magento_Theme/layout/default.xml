@@ -22,7 +22,7 @@
         </referenceContainer>
 
          <referenceContainer name="footer">
-            <block class="Magento\Theme\Block\Html\Footer" name="newsletter_img" template="Magento_Theme::fonticon.phtml" before="form.subscribe"/>
+             <block class="Conceptive\Commerce\Block\Categories" name="newsletter_img" template="Magento_Theme::fonticon.phtml" before="form.subscribe"/>
        </referenceContainer>
 
 
